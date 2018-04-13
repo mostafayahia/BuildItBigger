@@ -12,7 +12,7 @@ buildscript {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.3"
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
@@ -33,11 +33,27 @@ android {
     }
 }
 
+android {
+    flavorDimensions "tier"
+    productFlavors {
+
+        free {
+            dimension "tier"
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+
+        paid {
+            dimension "tier"
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.google.android.gms:play-services-ads:11.8.0'
+    freeImplementation 'com.google.android.gms:play-services-ads:11.8.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
     implementation 'com.google.code.findbugs:jsr305:3.0.1'
@@ -47,4 +63,10 @@ dependencies {
     })
 
     testImplementation 'junit:junit:4.12'
+
+    // android library to display the joke
+    implementation project(':androidjokelib')
+
+    // for testing intent
+    androidTestImplementation 'com.android.support.test.espresso:espresso-intents:2.2.2'
 }

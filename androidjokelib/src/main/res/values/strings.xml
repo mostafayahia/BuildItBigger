@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">androidJokeLib</string>
+    <string name="error_in_getting_data">Error in retrieving the data</string>
+</resources>
